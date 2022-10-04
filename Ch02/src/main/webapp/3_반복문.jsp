@@ -49,7 +49,7 @@
 				<th>8단</th>
 				<th>9단</th>
 			</tr>
-			<% for(int x){ %>
+			
 			<tr>
 				<td>2 x 1 = 2</td>
 				<td>3 x 1 = 3</td>
@@ -62,7 +62,7 @@
 			</tr>
 			<%for(int x=1; x<=9; x++){ %>
 			<tr>
-				<%for(int y=2;y<=9;y++)%>
+				<%for(int y=2;y<=9;y++) {%>
 				<td><%=y %> x <%= x %> = <%=x*y %></td>
 				<% } %>
 			</tr>
