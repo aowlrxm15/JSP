@@ -54,7 +54,7 @@
 				<th>주소</th>
 				<th>관리</th>
 			</tr>
-			<% for(StudentBean sb : students){ %>
+			<% //for(//StudentBean //sb : students){ %>
 				<tr>
 					<td><%= sb.getStdNo() %></td>
 					<td><%= sb.getStdName() %></td>
@@ -66,7 +66,7 @@
 						<a href="./delete.jsp?stdNo=<%= sb.getStdNo() %>">삭제</a>
 					</td>			
 				</tr>
-			<% } %>
+			<% //} %>
 		</table>
 		
 		
