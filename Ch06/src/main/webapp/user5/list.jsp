@@ -17,9 +17,9 @@
 			User5Bean ub = new User5Bean();
 			ub.setUid(rs.getString(1));
 			ub.setName(rs.getString(2));
-			ub.setGender(rs.getInt(4));
-			ub.setAge(rs.getInt(5));
-			ub.setAddr(rs.getString(6));
+			ub.setGender(rs.getInt(3));
+			ub.setAge(rs.getInt(4));
+			ub.setAddr(rs.getString(5));
 			
 			users.add(ub);
 		}

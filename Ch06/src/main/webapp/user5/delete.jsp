@@ -1,3 +1,4 @@
+<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="config.DBCP"%>
 <%@page import="java.sql.Connection"%>
@@ -15,18 +16,12 @@
 	// 데이터베이스 작업
 	try{
 		Connection conn = DBCP.getConnection();		
-		String sql = "delete`user5` set `name`=?, `gender`=?, `age`=?, `addr`=? where `uid`=?";
-		PreparedStatement psmt = conn.prepareStatement(sql);
-		psmt.setString(1, name);
-		psmt.setString(2, gender);
-		psmt.setString(3, age);
-		psmt.setString(4, addr);
-		psmt.setString(5, uid);
+		Statement stmt = conn.createStatement();
 		// 4단계
-		psmt.executeUpdate();
+		stmt.executeUpdate("DELETE FROM `user5` where `uid`=?");
 		// 5단계
 		// 6단계
-		psmt.close();
+		stmt.close();
 		conn.close(); // 커넥션 반납
 		
 	}catch(Exception e){
