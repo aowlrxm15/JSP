@@ -1,9 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="_header.jsp" %>
+<%@ include file="./_header.jsp" %>
 <script src="/Jboard1/js/validation.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<scritp src="/Jboard1/js/zipcode.js"></scritp>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/Jboard1/js/zipcode.js"></script>
 <main id="user">
     <section class="register">
         <form action="/Jboard1/user/proc/registerProc.jsp" method="post">
@@ -13,7 +12,7 @@
                     <td>아이디</td>
                     <td>
                         <input type="text" name="uid" placeholder="아이디 입력"/>
-                        <button type="button" id=btnIdCheck><img src="/Jboard1/img/chk_id.gif" alt="중복확인"/></button>
+                        <button type="button" id="btnIdCheck"><img src="/Jboard1/img/chk_id.gif" alt="중복확인"/></button>
                         <span class="uidResult"></span>
                     </td>
                 </tr>
@@ -36,7 +35,7 @@
                     <td>이름</td>
                     <td>
                         <input type="text" name="name" placeholder="이름 입력"/>
-                        <span class="nameResult"></span>                       
+                        <span class="nameResult"></span>
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +43,7 @@
                     <td>
                         <p class="nickInfo">공백없는 한글, 영문, 숫자 입력</p>
                         <input type="text" name="nick" placeholder="별명 입력"/>
-                        <button type="button" id=btnNickCheck><img src="/Jboard1/img/chk_id.gif" alt="중복확인"/></button>
+                        <button type="button" id="btnNickCheck"><img src="/Jboard1/img/chk_id.gif" alt="중복확인"/></button>
                         <span class="nickResult"></span>
                     </td>
                 </tr>
@@ -82,4 +81,4 @@
 
     </section>
 </main>
-<%@ include file="_footer.jsp" %>
+<%@ include file="./_footer.jsp" %>
