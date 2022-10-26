@@ -2,7 +2,7 @@
 <%@ include file="_header.jsp" %>
 <main id="board">
    <section class="write">
-     <form action="/Jboard1/proc/writeProc.jsp" method="post">
+     <form action="/Jboard1/proc/writeProc.jsp" method="post" enctype="multipart/form-data">
      	<input type="hidden" name="uid" value="<%= ub.getUid()%>"/>
          <table border="0">
              <caption>글쓰기</caption>
@@ -18,14 +18,14 @@
                  </td>
              </tr>
              <tr>
-                 <th>첨부</th>
-                 <td><input type="file" name="file"></td>
+                 <th>파일</th>
+                 <td><input type="file" name="fname"/></td>
              </tr>
              
          </table>
          <div>
              <a href="/Jboard1/list.jsp" class="btn btnCancel">취소</a>
-             <input type="submit" class="btn Complete" value="작성완료"/>
+             <input type="submit" class="btn btnComplete" value="작성완료"/>
          </div>
      </form>
         
