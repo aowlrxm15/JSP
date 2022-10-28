@@ -1,4 +1,28 @@
+<%@page import="kr.co.jboard1.dao.ArticleDAO"%>
+<%@page import="java.io.File"%>
+<%@page import="kr.co.jboard1.bean.ArticleBean"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="kr.co.jboard1.db.Sql"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="kr.co.jboard1.db.DBCP"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	
+	request.setCharacterEncoding("UTF-8");
+	String no = request.getParameter("no");
+	String pg = request.getParameter("pg");
+	
+	ArticleDAO dao = ArticleDAO.getInstance();
+	
+	// 조회수 +1
+	dao.updateArticleHit(no);
+	
+	// 글 가져오기
+	ArticleBean article = dao.selectArticle(no);
+
+%>
 <%@ include file="_header.jsp" %>
 <main id="board">
        <section class="view">
@@ -9,17 +33,20 @@
                         <th>제목</th>
                             <td><input  type="text" 
                                     name="title" 
-                                    value="제목입니다." readonly>
+                                    readonly 
+                                    value="<%= article.getTitle()%>">
                             </td>
                     </tr>
+                    <% if(article.getFile() > 0){ %>
                     <tr>
                         <th>파일</th>
-                        <td><a href="#">2020년 상반기 매출자료.xls</a>&nbsp;<span>7</span>회 다운로드</td>
+                        <td><a href="/Jboard1/proc/download.jsp?parent=<%= article.getNo()%>"><%= article.getOriName() %></a>&nbsp;<span><%= article.getDownload() %></span>회 다운로드</td>
                     </tr>
+                    <% } %>
                     <tr>
                         <th>내용</th>
                         <td>
-                            <textarea name="content" readonly>내용 샘플입니다.</textarea>
+                            <textarea name="content" readonly><%= article.getContent() %></textarea>
                         </td>
                     </tr>
                     
@@ -27,7 +54,7 @@
                 <div>
                     <a href="#" class="btn btnRemove">삭제</a>
                     <a href="/Jboard1/modify.jsp" class="btn btnModify">수정</a>
-                    <a href="/Jboard1/list.jsp" class="btn btnList">목록</a>
+                    <a href="/Jboard1/list.jsp?pg=<%= pg %>" class="btn btnList">목록</a>
                 </div>
             <!-- 댓글목록 -->
             <section class="commentList">
