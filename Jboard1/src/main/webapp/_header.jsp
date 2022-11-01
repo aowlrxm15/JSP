@@ -4,7 +4,7 @@
 	UserBean ub = (UserBean)session.getAttribute("sessUser");
 
 	if(ub == null){
-		response.sendRedirect("/Jboard1/user/login/jsp?success=101");
+		response.sendRedirect("/Jboard1/user/login.jsp?success=101");
 		return;
 	}
 %>
@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <title>글목록</title>
     <link rel="stylesheet" href="./css/style.css"/>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
     <div id="wrapper">
