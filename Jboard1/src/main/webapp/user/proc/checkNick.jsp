@@ -9,6 +9,7 @@
 	// 전송 데이터 수신
 	request.setCharacterEncoding("utf-8");
 	String nick = request.getParameter("nick");
+
 	// 데이터베이스 처리
 	int result = 0;
 	

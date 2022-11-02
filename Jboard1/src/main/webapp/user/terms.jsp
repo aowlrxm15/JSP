@@ -25,6 +25,7 @@
 <%
 	String terms = null;
 	String privacy = null;
+
 	try{
 		Connection conn = DBCP.getConnection();
 		Statement stmt = conn.createStatement();

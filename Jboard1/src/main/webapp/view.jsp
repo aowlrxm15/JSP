@@ -25,7 +25,19 @@
 %>
 <%@ include file="./_header.jsp" %>
 <script>
+
 	$(document).ready(function(){
+		
+		// 글 삭제
+		$('.btnRemove').click(function(){
+			let isDelete = confirm('정말 삭제 하시겠습니까?');
+			if(isDelete){
+				return true;
+			}else{
+				return false;
+			}
+		});
+		
 		
 		// 댓글 삭제
 		$(document).on('click', '.remove', function(e){
@@ -37,7 +49,7 @@
 				
 				let article = $(this).closest('article');
 				let no = $(this).attr('data-no');
-				let jsonData = {"no":no};
+				let jsonData = {"no": no};
 				
 				$.ajax({
 					url: '/Jboard1/proc/commentDeleteProc.jsp',
@@ -45,17 +57,14 @@
 					data: jsonData,
 					dataType: 'json',
 					success: function(data){
-						
 						if(data.result == 1){
-							alert('댓글이 삭제되었습니다.');
+							alert('댓글이 삭제되었습니다.');							
 							article.hide();
 						}
 					}
 				});
 			}
-			
 		});
-		
 		
 		// 댓글 수정
 		$(document).on('click', '.modify', function(e){
@@ -71,7 +80,7 @@
 				p_tag.focus();	
 			}else{
 				// 수정완료
-				$(this).text('수정');
+				$(this).text('수정');	
 				
 				let no = $(this).attr('data-no');
 				let content = p_tag.text();
@@ -92,7 +101,6 @@
 						
 						if(data.result == 1){
 							alert('댓글이 수정되었습니다.');
-							$(this).text('수정');				
 							p_tag.attr('contentEditable', false);
 						}
 					}
@@ -146,6 +154,7 @@
 					}
 				}
 			});
+
 			return false;
 		});
 	});
@@ -174,8 +183,8 @@
         </table>
         
         <div>
-            <a href="#" class="btn btnRemove">삭제</a>
-            <a href="/Jboard1/modify.jsp" class="btn btnModify">수정</a>
+            <a href="/Jboard1/proc/deleteProc.jsp?no=<%= article.getNo() %>&pg=<%= pg %>" class="btn btnRemove">삭제</a>
+            <a href="/Jboard1/modify.jsp?no=<%= article.getNo() %>&pg=<%= pg %>" class="btn btnModify">수정</a>
             <a href="/Jboard1/list.jsp?pg=<%= pg %>" class="btn btnList">목록</a>
         </div>
 

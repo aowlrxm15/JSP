@@ -11,6 +11,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String pg = request.getParameter("pg");
+	
 	// 게시물 목록 처리 관련 변수 선언
 	int limitStart = 0;
 	int currentPage = 1;
@@ -72,7 +73,7 @@
             <% for(ArticleBean article : articles){ %>
             <tr>
                 <td><%= pageStartNum-- %></td>
-                <td><a href="/Jboard1/view.jsp?no=<%= article.getNo()%>&pg=<%= currentPage%>"><%= article.getTitle() %>[<%= article.getComment() %>]</a></td>
+                <td><a href="/Jboard1/view.jsp?no=<%= article.getNo() %>&pg=<%= currentPage %>"><%= article.getTitle() %>[<%= article.getComment() %>]</a></td>
                 <td><%= article.getNick() %></td>
                 <td><%= article.getRdate().substring(2, 10) %></td>
                 <td><%= article.getHit() %></td>

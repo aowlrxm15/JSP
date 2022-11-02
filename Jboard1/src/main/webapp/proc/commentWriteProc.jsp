@@ -8,13 +8,12 @@
 <%@page import="kr.co.jboard1.db.DBCP"%>
 <%@ page contentType="application/json;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	
 	request.setCharacterEncoding("UTF-8");
-	String no 	= request.getParameter("no");
-	String content 	= request.getParameter("content");
-	String uid 		= request.getParameter("uid");
-	String regip 	= request.getRemoteAddr();
-	
+	String no 	   = request.getParameter("no");
+	String content = request.getParameter("content");
+	String uid     = request.getParameter("uid");
+	String regip   = request.getRemoteAddr();
+
 	ArticleBean comment = new ArticleBean();
 	comment.setParent(no);
 	comment.setContent(content);
@@ -22,8 +21,6 @@
 	comment.setRegip(regip);
 	
 	ArticleBean article = ArticleDAO.getInstance().insertComment(comment);
-	
-	
 	
 	JsonObject json = new JsonObject();
 	json.addProperty("result", 1);
@@ -34,6 +31,6 @@
 	
 	String jsonData = json.toString();
 	out.print(jsonData);
-
-	//response.sendRedirect("/Jboard1/view.jsp?no="+no+"&pg="+pg);
+	
+	//response.sendRedirect("/Jboard1/view.jsp?no="+no+"&pg="+pg);	
 %>

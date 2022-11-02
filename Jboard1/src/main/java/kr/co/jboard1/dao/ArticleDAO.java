@@ -84,7 +84,6 @@ public class ArticleDAO {
 		int result = 0;
 		
 		try{
-			
 			Connection conn = DBCP.getConnection();
 			
 			conn.setAutoCommit(false);
@@ -116,6 +115,7 @@ public class ArticleDAO {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		return article;
 	}
 	
@@ -140,7 +140,6 @@ public class ArticleDAO {
 		}
 		return total;
 	}
-	
 	
 	public ArticleBean selectArticle(String no) {
 		
@@ -183,50 +182,6 @@ public class ArticleDAO {
 		
 		return article;
 	}
-	
-	public List<ArticleBean> selectComments(String parent) {
-		
-		List<ArticleBean> comments = new ArrayList<>();
-		
-		try {
-			Connection conn = DBCP.getConnection();
-			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENTS);
-			psmt.setString(1, parent);
-			
-			ResultSet rs = psmt.executeQuery();
-			
-			while(rs.next()) {
-				ArticleBean comment = new ArticleBean();
-				comment.setNo(rs.getInt(1));
-				comment.setParent(rs.getInt(2));
-				comment.setComment(rs.getInt(3));
-				comment.setCate(rs.getString(4));
-				comment.setTitle(rs.getString(5));
-				comment.setContent(rs.getString(6));
-				comment.setFile(rs.getInt(7));
-				comment.setHit(rs.getInt(8));
-				comment.setUid(rs.getString(9));
-				comment.setRegip(rs.getString(10));
-				comment.setRdate(rs.getString(11));
-				comment.setNick(rs.getString(12));
-				
-				
-				comments.add(comment);
-			}
-			
-			rs.close();
-			psmt.close();
-			conn.close();
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return comments;
-	}
-	
-	
-	
 	
 	public List<ArticleBean> selectArticles(int limitStart) {
 		
@@ -294,7 +249,61 @@ public class ArticleDAO {
 		return fb;
 	}
 	
-	public void updateArticle() {}
+	public List<ArticleBean> selectComments(String parent) {
+		
+		List<ArticleBean> comments = new ArrayList<>();
+		
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_COMMENTS);
+			psmt.setString(1, parent);
+			
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleBean comment = new ArticleBean();
+				comment.setNo(rs.getInt(1));
+				comment.setParent(rs.getInt(2));
+				comment.setComment(rs.getInt(3));
+				comment.setCate(rs.getString(4));
+				comment.setTitle(rs.getString(5));
+				comment.setContent(rs.getString(6));
+				comment.setFile(rs.getInt(7));
+				comment.setHit(rs.getInt(8));
+				comment.setUid(rs.getString(9));
+				comment.setRegip(rs.getString(10));
+				comment.setRdate(rs.getString(11));
+				comment.setNick(rs.getString(12));
+				
+				comments.add(comment);
+			}
+			
+			rs.close();
+			psmt.close();
+			conn.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return comments;
+	}
+	
+	public void updateArticle(String no, String title, String content) {
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, no);
+			
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void updateArticleHit(String no) {
 		try {
@@ -333,14 +342,61 @@ public class ArticleDAO {
 			result = psmt.executeUpdate();
 			psmt.close();
 			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public void deleteArticle(String no) {
+		try {
+			Connection conn = DBCP.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.DELETE_ARTICLE);
+			psmt.setString(1, no);
+			psmt.setString(2, no);
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public String deleteFile(String no) {
+		
+		String newName = null;
+		
+		try {
+			Connection conn = DBCP.getConnection();
+			
+			conn.setAutoCommit(false);
+			PreparedStatement psmt1 = conn.prepareStatement(Sql.SELECT_FILE);
+			PreparedStatement psmt2 = conn.prepareStatement(Sql.DELETE_FILE);
+			
+			psmt1.setString(1, no);
+			psmt2.setString(1, no);
+			
+			ResultSet rs = psmt1.executeQuery();
+			psmt2.executeUpdate();
+			
+			conn.commit();
+			
+			if(rs.next()) {
+				newName = rs.getString(3);
+			}
+			
+			psmt1.close();
+			psmt2.close();
+			conn.close();
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		
+		return newName;
 	}
-	
-	public void deleteArticle() {}
 	
 	public int deleteComment(String no) {
 		int result = 0;

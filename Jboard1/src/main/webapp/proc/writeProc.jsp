@@ -14,10 +14,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
+
 	// multipart 폼 데이터 수신
 	String savePath = application.getRealPath("/file");
 	int maxSize = 1024 * 1024 * 10;
 	MultipartRequest mr = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+
 	String title   = mr.getParameter("title");
 	String content = mr.getParameter("content");
 	String uid     = mr.getParameter("uid");
@@ -58,3 +60,4 @@
 	
 	response.sendRedirect("/Jboard1/list.jsp");
 %>
+

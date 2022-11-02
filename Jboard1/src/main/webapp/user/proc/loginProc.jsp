@@ -9,6 +9,7 @@
 	request.setCharacterEncoding("utf-8");
 	String uid  = request.getParameter("uid");
 	String pass = request.getParameter("pass");
+
 	UserBean ub = null;
 	
 	try{
@@ -42,6 +43,7 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
+
 	if(ub != null){
 		// 회원이 맞을 경우
 		
@@ -55,4 +57,13 @@
 		response.sendRedirect("/Jboard1/user/login.jsp?success=100");
 	}
 %>
+
+
+
+
+
+
+
+
+
 

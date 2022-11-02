@@ -14,26 +14,22 @@ public class ArticleBean {
 	private String regip;
 	private String rdate;
 	
-	// 추가 필드
+	// 추가필드
 	private String fname;
+	private String nick;
+	
+	private int fno;
+	private int pno;
+	private String newName;
+	private String oriName;
+	private int download;
+	
 	public String getFname() {
 		return fname;
 	}
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-	private String nick;
-	
-	private int fno;
-	
-	private int pno;
-	
-	private String newName;
-	
-	private String oriName;
-	
-	private int download;
-	
 	
 	public int getFno() {
 		return fno;
@@ -87,6 +83,7 @@ public class ArticleBean {
 	public void setParent(String parent) {
 		this.parent = Integer.parseInt(parent);
 	}
+	
 	public int getComment() {
 		return comment;
 	}
@@ -141,5 +138,8 @@ public class ArticleBean {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
+	
+	
+	
 
 }
