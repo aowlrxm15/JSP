@@ -1,4 +1,4 @@
-package controller;
+package controller.user1;
 
 import java.io.IOException;
 
@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.User1DAO;
+import vo.User1VO;
 
-@WebServlet("/welcome.do")
-public class WelcomeController extends HttpServlet {
+
+@WebServlet("/user1/delete.do")
+public class DeleteController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -21,13 +24,17 @@ public class WelcomeController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/welcome.jsp");
-		dispatcher.forward(req, resp);
+		
+		String uid 	= req.getParameter("uid");
+		
+		User1DAO.getInstance().deleteUser1(uid);
+		resp.sendRedirect("/Ch09/user1/list.do");
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 	}
 	
-		
 }
