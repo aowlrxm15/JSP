@@ -1,9 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/_header.jsp" %>
-
 <main id="user">
     <section class="login">
-        <form action="#" method="post">
+        <form action="./proc/loginProc.jsp" method="post">
             <table border="0">
                 <tr>
                     <td><img src="./img/login_ico_id.png" alt="아이디"/></td>
