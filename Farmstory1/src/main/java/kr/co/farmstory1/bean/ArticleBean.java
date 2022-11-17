@@ -138,8 +138,11 @@ public class ArticleBean {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-	
+		public void run() {
+			
+		}
+	}
 	
 	
 
-}
+

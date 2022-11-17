@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.farmstory1.bean.ArticleBean;
-import kr.co.farmstory1.bean.FileBean;
 import kr.co.farmstory1.db.DBHelper;
 import kr.co.farmstory1.db.Sql;
 
@@ -78,13 +79,16 @@ public class ArticleDAO extends DBHelper {
 	public ArticleBean selectArticle(String no) {
 		
 		ArticleBean article = null;
-		try {
-			logger.info("selectArticle...");
+		
+		try{
+			logger.info("selectArticle");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_ARTICLE);
-			rs = psmt.executeQuery();
+			psmt.setString(1, no);
 			
-			if(rs.next()) {
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()){
 				article = new ArticleBean();
 				article.setNo(rs.getInt(1));
 				article.setParent(rs.getInt(2));
@@ -103,13 +107,16 @@ public class ArticleDAO extends DBHelper {
 				article.setOriName(rs.getString(15));
 				article.setDownload(rs.getInt(16));
 			}
-			conn.close();
-			psmt.close();
-			rs.close();
 			
-		}catch (Exception e) {
+			rs.close();
+			psmt.close();
+			conn.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
+		
 		return article;
 	}
 	
@@ -152,43 +159,119 @@ public class ArticleDAO extends DBHelper {
 		return articles;
 	}
 	
-	public FileBean selectFile(String parent) {
-		FileBean fb = null;
+	public List<ArticleBean> selectLatests(String cate1, String cate2, String cate3) {
 		
-		try{
-			logger.info("selectFile...");
-			conn =getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_FILE);
-			psmt.setString(1, parent);
-		 	rs = psmt.executeQuery();
-		 	
-		 	if(rs.next()){
-		 		fb = new FileBean();
-		 		fb.setFno(rs.getInt(1));
-		 		fb.setParent(rs.getInt(2));
-		 		fb.setNewName(rs.getString(3));
-		 		fb.setOriName(rs.getString(4));
-		 		fb.setDownload(rs.getInt(5));
-		 	}
-		 	rs.close();
-		 	psmt.close();
-		 	conn.close();
-		}catch(Exception e){
+		List<ArticleBean> latests = new ArrayList<>();
+		
+		try {
+			logger.info("selectLatests...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_LATESTS);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			psmt.setString(3, cate3);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleBean ab = new ArticleBean();
+				ab.setNo(rs.getInt(1));
+				ab.setTitle(rs.getString(2));
+				ab.setRdate(rs.getString(3).substring(2, 10));
+				
+				latests.add(ab);
+			}
+			
+			close();
+			
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return latests;
+	}
+	
+	public synchronized List<ArticleBean> selectLatests(String cate) {
+		
+		List<ArticleBean> latests = new ArrayList<>();
+		
+		try {
+			logger.info("selectLatests(String)...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_LATEST);
+			psmt.setString(1, cate);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleBean ab = new ArticleBean();
+				ab.setNo(rs.getInt(1));
+				ab.setTitle(rs.getString(2));
+				ab.setRdate(rs.getString(3).substring(2, 10));
+				
+				latests.add(ab);
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		logger.info("latests size : " + latests.size());
+		
+		return latests;
+	}
+	
+	public int selectCountTotal(String cate) {
+		
+		int total = 0;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL);
+			psmt.setString(1, cate);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return total;		
+	}
+	public void updateArticle(String no, String title, String content) {
+		try {
+			logger.info("updateArticle");
+			 conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setString(3, no);
+			
+			psmt.executeUpdate();
+			psmt.close();
+			conn.close();
+		}catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
-		return fb;
 	}
 	
-	public List<ArticleBean> selectComments(String parent) {
+public List<ArticleBean> selectComments(String parent) {
+		
 		List<ArticleBean> comments = new ArrayList<>();
 		
 		try {
-			logger.info("selectComments...");
+			logger.info("selectComments");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_COMMENTS);
 			psmt.setString(1, parent);
-			rs = psmt.executeQuery();
+			
+			ResultSet rs = psmt.executeQuery();
 			
 			while(rs.next()) {
 				ArticleBean comment = new ArticleBean();
@@ -211,79 +294,29 @@ public class ArticleDAO extends DBHelper {
 			rs.close();
 			psmt.close();
 			conn.close();
+			
 		}catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
+		
 		return comments;
 	}
 	
-	public int selectCountTotal(String cate) {
-		
-		int total = 0;
-		
-		try {
-			
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL);
-			psmt.setString(1, cate);
-			
-			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
-				total = rs.getInt(1);
-			}
-			close();		
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return total;		
-	}
-	public void updateArticle() {}
-	
 	public void updateArticleHit(String no) {
 		try {
-			logger.info("updateArticleHit...");
+			logger.info("updateArticleHit");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.UPDATE_ARTICLE_HIT);
 			psmt.setString(1, no);
-			
-			psmt.executeUpdate();
-			conn.close();
-			psmt.close();
-			
-		}catch (Exception e) {
-			logger.error(e.getMessage());
-		}
-	}
-	
-	public void updateFileDownload(int fno) {
-		try {
-			logger.info("updateFileDownload...");
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.UPDATE_FILE_DOWNLOAD);
-			psmt.setInt(1, fno);
 			psmt.executeUpdate();
 			psmt.close();
 			conn.close();
 		}catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 	}
-	
 	public void deleteArticle() {}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
