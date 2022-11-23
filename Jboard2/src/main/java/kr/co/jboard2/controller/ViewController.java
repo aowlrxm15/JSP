@@ -1,4 +1,4 @@
-package kr.co.jboard2.controller.user;
+package kr.co.jboard2.controller;
 
 import java.io.IOException;
 
@@ -9,27 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.jboard2.dao.UserDAO;
-import kr.co.jboard2.service.user.UserService;
-import kr.co.jboard2.vo.TermsVO;
-
-@WebServlet("/user/terms.do")
-public class TermsController extends HttpServlet {
+@WebServlet("/view.do")
+public class ViewController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private UserService service = UserService.INSTANCE;
-	
+
 	@Override
 	public void init() throws ServletException {
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		TermsVO vo = service.selectTerms();
-		req.setAttribute("vo", vo);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/terms.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/view.jsp");
 		dispatcher.forward(req, resp);
 	}
 	

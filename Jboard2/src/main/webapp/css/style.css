@@ -237,7 +237,7 @@ footer > p {
     margin: 60px auto;    
 }
 
- #board > .list > form {
+#board > .list > form {
     float: right;
     margin-bottom: -14px;
 }
@@ -254,6 +254,7 @@ footer > p {
     color: #111;
     padding: 6px;
 }
+
 #board > .list > table {
     width: 100%;
     height: auto;
