@@ -1,5 +1,5 @@
-<%@page import="kr.co.jboard1.dao.UserDAO"%>
 <%@page import="kr.co.jboard1.bean.TermsBean"%>
+<%@page import="kr.co.jboard1.dao.UserDAO"%>
 <%@page import="kr.co.jboard1.db.Sql"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -25,7 +25,7 @@
 	});
 </script>
 <%
-	TermsBean tb = UserDAO.getInstance().selectTerms();
+ 	TermsBean tb = UserDAO.getInstance().selectTerms();
 %>
 <main id="user">
     <section class="terms">

@@ -1,32 +1,27 @@
-<%@page import="java.sql.Array"%>
-<%@page import="java.util.List"%>
 <%@page import="bean.MemberBean"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	//데이터베이스 작업
+	//데이터베이스 처리
 	String host = "jdbc:mysql://127.0.0.1:3306/java2db";
 	String user = "root";
 	String pass = "1234";
 	
-		List<MemberBean> members = new ArrayList<>();
+	List<MemberBean> members = new ArrayList<>();
+	
 	try{
-		
-		// 1단계
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		// 2단계
 		Connection conn = DriverManager.getConnection(host, user, pass);
-		// 3단계
 		Statement stmt = conn.createStatement();
-		// 4단계
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `member`");
-		// 5단계		
 		
 		while(rs.next()){
+			
 			MemberBean mb = new MemberBean();
 			mb.setUid(rs.getString(1));
 			mb.setName(rs.getString(2));
@@ -36,16 +31,16 @@
 			mb.setRdate(rs.getString(6));
 			
 			members.add(mb);
-			
 		}
 		
-		// 6단계
-		conn.close();		
+		conn.close();
 		
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-%>	
+		
+%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -85,10 +80,10 @@
 								out.println("영업3부");
 								break;
 							case 104:
-								out.println("영업4부");
+								out.println("인사부");
 								break;
 							case 105:
-								out.println("인사부");
+								out.println("영업지원부");
 								break;
 							}
 						%>

@@ -49,6 +49,8 @@
 					$('section').hide();
 				});
 				
+				
+				/*
 				$('input[type=submit]').click(function(){
 					let LecNo = $('input[name=LecNo]').val();
 					let LecName = $('input[name=LecName]').val();
@@ -71,6 +73,7 @@
 					});					
 				});
 			});
+			*/
 		</script>
 	</head>
 	<body>

@@ -8,6 +8,6 @@
 	<body>
 		<%
 			pageContext.forward("./target.jsp");
-		%>
+		%>		
 	</body>
 </html>

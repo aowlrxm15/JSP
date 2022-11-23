@@ -7,7 +7,6 @@
 	</head>
 	<body>
 		<h3>요청하신 페이지를 찾을 수 없습니다. 다시 한번 확인하시기 바랍니다.</h3>
-		<a href="/Ch03/7_exception.jsp">되돌아가기</a>
-		
+		<a href="/Ch03/7_exception.jsp">되돌아가기</a>		
 	</body>
 </html>

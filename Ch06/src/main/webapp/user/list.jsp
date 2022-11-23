@@ -7,7 +7,7 @@
 <%@page import="java.sql.DriverManager"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-//데이터베이스 작업
+	// 데이터베이스 작업
 	String host = "jdbc:mysql://127.0.0.1:3306/java2db";
 	String user = "root";
 	String pass = "1234";
@@ -65,16 +65,17 @@
 			</tr>
 			<% for(UserBean ub : users){ %>
 			<tr>
-				<td><%= ub.getUid()%></td>
-				<td><%= ub.getName()%></td>
-				<td><%= ub.getHp()%></td>
-				<td><%= ub.getAge()%></td>
+				<td><%= ub.getUid() %></td>
+				<td><%= ub.getName() %></td>
+				<td><%= ub.getHp() %></td>
+				<td><%= ub.getAge() %></td>
 				<td>
-					<a href="./modify.jsp?uid=<%= ub.getUid()%>">수정</a>
-					<a href="./delete.jsp?uid=<%= ub.getUid()%>">삭제</a>
-				</td>
+					<a href="./modify.jsp?uid=<%= ub.getUid() %>">수정</a>
+					<a href="./delete.jsp?uid=<%= ub.getUid() %>">삭제</a>
+				</td>				
 			</tr>
 			<% } %>
 		</table>
+		
 	</body>
 </html>

@@ -3,13 +3,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>3_XML</title>
+		<title>3_JSON</title>
 		<!-- 
 			날짜 : 2022/10/20
-			이름 : 전인준
-			내용 : JSP XML 실습
-		 -->
-		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+			이름 : 김철학
+			내용 : JSP XML 실습하기		
+		-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script>
 			$(function(){
 				
@@ -39,10 +39,11 @@
 						method: 'get',
 						dataType: 'xml',
 						success: function(data){
+							
+							let users = $(data).find('user');
+							users.each(function(){
 								
-								let users = $(data).find('user');
-								users.each(function(){
-									let tags  = "<tr>";
+								let tags  = "<tr>";
 									tags += "<td>"+$(this).find('uid').text()+"</td>";
 									tags += "<td>"+$(this).find('name').text()+"</td>";
 									tags += "<td>"+$(this).find('hp').text()+"</td>";
@@ -51,9 +52,6 @@
 								
 								$('table').append(tags);
 							});
-							
-								
-								
 						}						
 					});
 				});
@@ -63,8 +61,8 @@
 	<body>
 		<h3>XML 실습</h3>
 		
-		<a href="./data/xml1.jsp">JSON 출력1</a>
-		<a href="./data/xml2.jsp">JSON 출력2</a>
+		<a href="./data/xml1.jsp">XML 출력1</a>
+		<a href="./data/xml2.jsp">XML 출력2</a>
 		
 		<h4>AJAX 실습</h4>
 		

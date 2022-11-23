@@ -5,6 +5,8 @@
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+
+
 	request.setCharacterEncoding("UTF-8");
 	String custid = request.getParameter("custid");
 	customerBean cB = null;
@@ -18,11 +20,11 @@
 		
 		ResultSet rs = psmt.executeQuery();
 		if(rs.next()){
-			cB = new customerBean();
-			cB.setCustid(rs.getString(1));
-			cB.setName(rs.getString(2));
-			cB.setAddress(rs.getString(3));
-			cB.setPhone(rs.getString(4));
+	cB = new customerBean();
+	cB.setCustid(rs.getString(1));
+	cB.setName(rs.getString(2));
+	cB.setAddress(rs.getString(3));
+	cB.setPhone(rs.getString(4));
 		}
 		
 		rs.close();

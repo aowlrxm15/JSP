@@ -6,10 +6,10 @@
 		<title>3_JSON</title>
 		<!-- 
 			날짜 : 2022/10/20
-			이름 : 전인준
-			내용 : JSP JSON 실습
-		 -->
-		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+			이름 : 김철학
+			내용 : JSP JSON 실습하기		
+		-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script>
 			$(function(){
 				

@@ -12,12 +12,10 @@
 <%@page import="config.DBCP"%>
 <%@ page contentType="text/xml;charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%
-
-	List<UserBean> users = new ArrayList<>();	
+	List<UserBean> users = new ArrayList<>();
 
 	try{
-		
-		Connection conn =  DBCP.getConnection();
+		Connection conn = DBCP.getConnection();
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from `user2`");
 		
@@ -28,7 +26,7 @@
 			ub.setHp(rs.getString(3));
 			ub.setAge(rs.getInt(4));
 			
-			users.add(ub);
+			users.add(ub);			
 		}
 		
 		rs.close();
@@ -43,7 +41,7 @@
 	Document doc = new Document();
 	Element tagUsers = new Element("users");
 	
-	for(UserBean  ub : users){
+	for(UserBean ub : users){
 		
 		Element tagUser = new Element("user");
 		Element tagUid  = new Element("uid");
@@ -65,12 +63,11 @@
 	}
 	
 	doc.setRootElement(tagUsers);
-	
+
 	// xml 출력서식 지정
 	XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 	String xml = outputter.outputString(doc);
-	
-	// XML 출력
-	out.print(xml);
 
+	// XML 출력
+	out.print(xml);	
 %>

@@ -7,7 +7,6 @@
 	String pw = request.getParameter("pw");
 	
 	
-	
 	if(pw.equals("1234")){
 		// 회원 맞음
 		
@@ -16,10 +15,8 @@
 		response.sendRedirect("./loginSuccess.jsp");
 		
 	}else{
-		// 회원 아님
+		// 회원 아님		
 		response.sendRedirect("../6_session.jsp");
-		
-		
 	}
 
 

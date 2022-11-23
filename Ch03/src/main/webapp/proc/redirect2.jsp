@@ -7,9 +7,8 @@
 	</head>
 	<body>
 		<h3>redirect2 페이지</h3>
-		
 	</body>
 </html>
-<% 
+<%
 	response.sendRedirect("https://naver.com");
 %>

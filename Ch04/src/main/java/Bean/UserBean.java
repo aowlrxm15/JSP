@@ -1,7 +1,7 @@
 package Bean;
 
 public class UserBean {
-	
+
 	private String id;
 	private String pw;
 	private String name;
@@ -52,5 +52,4 @@ public class UserBean {
 	public void setHobby(String[] hobby) {
 		this.hobby = hobby;
 	}
-
 }

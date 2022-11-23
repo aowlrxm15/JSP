@@ -1,13 +1,13 @@
 package bean;
 
 public class MemberBean {
-	
-	private String uid ;
-	private String name ;
-	private String hp ;
-	private String pos ;
-	private int dep ;
-	private String rdate ;
+
+	private String uid;
+	private String name;
+	private String hp;
+	private String pos;
+	private int dep;
+	private String rdate;
 	
 	public String getUid() {
 		return uid;
@@ -46,10 +46,4 @@ public class MemberBean {
 		this.rdate = rdate;
 	}
 	
-	
-	
-	
-	
-	
-
 }

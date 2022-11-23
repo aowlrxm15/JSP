@@ -6,15 +6,16 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 전송 데이터 수신
-	request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("utf-8");
 	String uid = request.getParameter("uid");
 	
 	// 데이터베이스 작업
-	String host = "jdbc:mysql://127.0.0.1:3306/java2db"; 
+	String host = "jdbc:mysql://127.0.0.1:3306/java2db";
 	String user = "root";
 	String pass = "1234";
 	
 	UserBean ub = null;
+	
 	try{
 		Connection conn = DriverManager.getConnection(host, user, pass);
 		
@@ -40,6 +41,7 @@
 		e.printStackTrace();
 	}
 %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -55,27 +57,27 @@
 			<table border="1">
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="uid" readonly value="<%= ub.getUid()%>"/></td>
+					<td><input type="text" name="uid" readonly value="<%= ub.getUid() %>"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="name" value="<%= ub.getName()%>"/></td>
+					<td><input type="text" name="name" value="<%= ub.getName() %>"/></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td><input type="text" name="hp" value="<%= ub.getHp()%>"/></td>
+					<td><input type="text" name="hp" value="<%= ub.getHp() %>"/></td>
 				</tr>
 				<tr>
 					<td>나이</td>
-					<td><input type="number" name="age" value="<%= ub.getAge()%>"/></td>
+					<td><input type="number" name="age" value="<%= ub.getAge() %>"/></td>
 				</tr>
 				<tr>
-					<td></td>
 					<td colspan="2" align="right">
 						<input type="submit" value="수정하기"/>
 					</td>
 				</tr>
 			</table>
 		</form>
+		
 	</body>
 </html>

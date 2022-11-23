@@ -1,7 +1,7 @@
 package bean;
 
 public class UserBean {
-	
+
 	private String uid;
 	private String name;
 	private String hp;
@@ -31,7 +31,4 @@ public class UserBean {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
-
 }

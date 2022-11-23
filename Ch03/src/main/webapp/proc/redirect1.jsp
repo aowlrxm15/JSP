@@ -7,9 +7,8 @@
 	</head>
 	<body>
 		<h3>redirect1 페이지</h3>
-		
 	</body>
 </html>
-<% 
+<%
 	response.sendRedirect("../1_request.jsp");
 %>

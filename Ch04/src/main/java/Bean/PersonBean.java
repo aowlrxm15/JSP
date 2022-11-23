@@ -1,6 +1,6 @@
 package Bean;
 
-// Bean : POJO(Plain Old Java Object) 모델
+// Bean: POJO(Plain Old Java Object) 모델
 public class PersonBean {
 	
 	// 속성

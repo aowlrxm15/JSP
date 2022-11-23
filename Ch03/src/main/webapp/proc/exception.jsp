@@ -11,8 +11,6 @@
 			int num2 = 0;
 			
 			int result = num1 / num2;
-			
-			
 		%>
 		
 		결과 : <%= result %>

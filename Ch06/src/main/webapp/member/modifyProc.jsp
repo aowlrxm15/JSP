@@ -25,10 +25,10 @@
 		       sql += "`name`='"+name+"',";
 		       sql += "`hp`='"+hp+"',";
 		       sql += "`pos`='"+pos+"',";
-		       sql += "`dep`="+dep+", ";
+		       sql += "`dep`="+dep+" ";
 		       sql += "WHERE `uid`='"+uid+"'";
 		       
-		stmt.executeUpdate(sql);		       	
+		stmt.executeUpdate(sql);
 		conn.close();
 		
 	}catch(Exception e){

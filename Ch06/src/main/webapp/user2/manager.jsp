@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>user2 manager</title>
-		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-		 <script src="./js/list.js"></script>
-		 <script src="./js/register.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script src="./js/list.js"></script>
+		<script src="./js/register.js"></script>
 		<script>
 			$(document).ready(function(){
 				
@@ -26,13 +26,12 @@
 				});
 				
 				// user2 등록하기
-				$(document).on('click','#btnRegister', function(){
-					
+				$(document).on('click', '#btnRegister', function(){
 					// 데이터 가져오기
-					let uid = $('input[name=uid]').val();
+					let uid  = $('input[name=uid]').val();
 					let name = $('input[name=name]').val();
-					let hp = $('input[name=hp]').val();
-					let age = $('input[name=age]').val();
+					let hp   = $('input[name=hp]').val();
+					let age  = $('input[name=age]').val();
 					
 					// JSON 생성
 					let jsonData = {
@@ -46,8 +45,8 @@
 					
 					// 전송하기
 					$.ajax({
-						url:'./data/register.jsp',
-						method:'post',
+						url: './data/register.jsp',
+						method: 'post',
 						data: jsonData,
 						dataType: 'json',
 						success: function(data){
@@ -57,11 +56,17 @@
 							}else{
 								alert('입력 실패! 아이디가 중복 되었습니다.');
 							}
+								
 						}
 					});
+					
 				});
+				
+				
 			});
+		
 		</script>
+		
 		
 	</head>
 	<body>

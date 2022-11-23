@@ -1,7 +1,5 @@
 package kr.co.jboard1.dao;
 
-import java.sql.Connection;
-
 import kr.co.jboard1.bean.TermsBean;
 import kr.co.jboard1.bean.UserBean;
 import kr.co.jboard1.db.DBHelper;
@@ -110,10 +108,6 @@ public class UserDAO extends DBHelper {
 		return result;
 	}
 	
-	private Connection getConnection() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public int selectCountUid(String uid) {
 		int result = 0;
 		

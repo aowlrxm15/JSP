@@ -4,10 +4,10 @@
 
 	if(id == null){
 		response.sendRedirect("../6_session.jsp");
-		return; // 처리 종료 
+		return; // 처리 종료
 	}
-
 %>
+
 <!DOCTYPE html>
 <html>
 	<head>

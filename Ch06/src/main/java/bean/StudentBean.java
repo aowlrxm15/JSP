@@ -1,12 +1,12 @@
 package bean;
 
 public class StudentBean {
-	
 	private String stdNo;
 	private String stdName;
 	private String stdHp;
 	private int stdYear;
 	private String stdAddress;
+	
 	public String getStdNo() {
 		return stdNo;
 	}
@@ -37,6 +37,4 @@ public class StudentBean {
 	public void setStdAddress(String stdAddress) {
 		this.stdAddress = stdAddress;
 	}
-	
-	
 }

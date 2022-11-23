@@ -9,6 +9,7 @@
 
 <%
 	List<StudentBean> students = new ArrayList<>();
+
 	// 데이터베이스 작업
 	try{
 		Connection conn = DB.getInstance().getConnection();

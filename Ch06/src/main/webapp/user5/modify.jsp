@@ -8,6 +8,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String uid = request.getParameter("uid");
+
 	User5Bean ub = null;
 	
 	try{
@@ -22,9 +23,11 @@
 			ub = new User5Bean();
 			ub.setUid(rs.getString(1));
 			ub.setName(rs.getString(2));
-			ub.setGender(rs.getInt(3));
-			ub.setAge(rs.getInt(4));
-			ub.setAddr(rs.getString(5));
+			ub.setBirth(rs.getString(3));
+			ub.setGender(rs.getInt(4));
+			ub.setAge(rs.getInt(5));
+			ub.setAddr(rs.getString(6));
+			ub.setHp(rs.getString(7));
 		}
 		
 		rs.close();
@@ -34,6 +37,8 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
+
+
 %>
 
 <!DOCTYPE html>
@@ -59,6 +64,10 @@
 					<td><input type="text" name="name" value="<%= ub.getName() %>"/></td>
 				</tr>
 				<tr>
+					<td>생년월일</td>
+					<td><input type="date" name="birth" value="<%= ub.getBirth() %>"/></td>
+				</tr>
+				<tr>
 					<td>성별</td>
 					<td>
 						<label><input type="radio" name="gender" value="1"/>남</label>
@@ -72,6 +81,10 @@
 				<tr>
 					<td>주소</td>
 					<td><input type="text" name="addr" value="<%= ub.getAddr() %>"/></td>
+				</tr>
+				<tr>
+					<td>휴대폰</td>
+					<td><input type="text" name="hp" value="<%= ub.getHp() %>"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right"><input type="submit" value="수정"/></td>

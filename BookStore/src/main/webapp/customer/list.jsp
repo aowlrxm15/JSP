@@ -7,6 +7,8 @@
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+
+
 	List<customerBean> customers = new ArrayList<>();
 	try{
 		Connection conn = DBCP.getConnection();
@@ -14,13 +16,13 @@
 		ResultSet rs = stmt.executeQuery("select * from `customer`");
 		
 		while(rs.next()){
-			customerBean cB = new customerBean();
-			cB.setCustid(rs.getString(1));
-			cB.setName(rs.getString(2));
-			cB.setAddress(rs.getString(3));
-			cB.setPhone(rs.getString(4));
-			
-			customers.add(cB);
+	customerBean cB = new customerBean();
+	cB.setCustid(rs.getString(1));
+	cB.setName(rs.getString(2));
+	cB.setAddress(rs.getString(3));
+	cB.setPhone(rs.getString(4));
+	
+	customers.add(cB);
 		}
 		rs.close();
 		stmt.close();
@@ -51,7 +53,10 @@
 				<th>관리</th>
 			</tr>
 		
-			<% for(customerBean cB : customers){ %>
+			<%
+					
+					 for(customerBean cB : customers){
+					%>
 			<tr>
 				<td><%= cB.getCustid() %></td>
 				<td><%= cB.getName() %></td>

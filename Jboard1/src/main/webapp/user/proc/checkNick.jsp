@@ -13,8 +13,7 @@
 
 	// 데이터베이스 처리
 	int result = UserDAO.getInstance().selectCountNick(nick);
-	
-	
+		
 	// JSON 출력
 	JsonObject json = new JsonObject();
 	json.addProperty("result", result);

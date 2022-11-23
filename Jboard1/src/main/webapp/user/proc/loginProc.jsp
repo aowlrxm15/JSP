@@ -12,7 +12,7 @@
 	String pass = request.getParameter("pass");
 
 	UserBean ub = UserDAO.getInstance().selectUser(uid, pass);
-		
+
 	if(ub != null){
 		// 회원이 맞을 경우
 		

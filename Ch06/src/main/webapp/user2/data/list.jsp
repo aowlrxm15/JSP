@@ -6,15 +6,14 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="config.DBCP"%>
-<%@ page contentType="apllication/json;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="application/json;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-
 	List<UserBean> users = new ArrayList<>();
-	
+
 	try{
 		Connection conn = DBCP.getConnection();
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from 'user2'");
+		ResultSet rs = stmt.executeQuery("select * from `user2`");
 		
 		while(rs.next()){
 			UserBean ub = new UserBean();
@@ -28,7 +27,7 @@
 		
 		rs.close();
 		stmt.close();
-		conn.close();
+		conn.close();		
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -38,5 +37,4 @@
 	String jsonData = gson.toJson(users);
 	
 	out.print(jsonData);
-
 %>

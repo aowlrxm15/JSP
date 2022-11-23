@@ -7,7 +7,7 @@
 		<title>도서목록</title>
 	</head>
 	<body>
-		<a href="/Bookstore2/book/index.do">처음으로</a>
+		<a href="/Bookstore2/index.do">처음으로</a>
 		<a href="/Bookstore2/book/register.do">도서등록</a>
 		
 		<table border="1">

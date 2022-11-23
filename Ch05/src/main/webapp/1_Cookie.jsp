@@ -3,16 +3,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>1_cookie</title>
+		<title>1_Cookie</title>
 		<!-- 
-			날짜 : 2022-10-12
-			이름 : 전인준
-			내용 : JSP Cookie 실습
-			
-			Cookie
-			- 클라이언트와 서버간의 식별을 위해 사용되는 조각파일
-			- 쿠키는 서버에서 생성해서 클라이언트로 전송/저장
-			- 클라이언트는 저장된 쿠키를 보관, 해당 서버로 쿠키 전송
+			날짜 : 2022/10/12
+			이름 : 김철학
+			내용 : JSP Cookie 실습하기
 		 -->
 	</head>
 	<body>
@@ -20,9 +15,11 @@
 		
 		<form action="./proc/cookieProc.jsp" method="post">
 			<input type="text" name="id" placeholder="아이디 입력"/><br/>
-			<input type="text" name="pw" placeholder="비밀번호  입력"/><br/>
-			<input type="submit" value="로그인"/>
+			<input type="text" name="pw" placeholder="비밀번호 입력"/><br/>
+			<input type="submit" value="로그인"/>		
 		</form>
+		
+		
 		
 	</body>
 </html>
