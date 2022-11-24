@@ -24,7 +24,8 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//ArticleVO vo = ArticleDAO.getInstance().
+		ArticleVO vo = ArticleDAO.getInstance().selectArticle(null);
+		req.setAttribute(getServletName(), resp);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/list.jsp");
 		dispatcher.forward(req, resp);
