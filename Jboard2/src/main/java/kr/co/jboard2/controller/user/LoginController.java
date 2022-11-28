@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.jboard2.service.user.UserService;
+import kr.co.jboard2.service.UserService;
 import kr.co.jboard2.vo.UserVO;
 
 @WebServlet("/user/login.do")
@@ -29,6 +29,7 @@ public class LoginController extends HttpServlet {
 		
 		String success = req.getParameter("success");
 		req.setAttribute("success", success);
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
 		dispatcher.forward(req, resp);
@@ -55,13 +56,12 @@ public class LoginController extends HttpServlet {
 				// 쿠키 생성
 				Cookie cookie = new Cookie("SESSID", sessId);
 				cookie.setPath("/");
-				cookie.setMaxAge(60 * 60 * 24 * 3);
+				cookie.setMaxAge(60*60*24*3);
 				resp.addCookie(cookie);
 				
 				// sessId 데이터베이스 저장
 				service.updateUserForSession(uid, sessId);
 			}
-			
 			resp.sendRedirect("/Jboard2/list.do");
 			
 		}else {

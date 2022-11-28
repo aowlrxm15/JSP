@@ -210,6 +210,7 @@ public class UserDAO extends DBHelper {
 			psmt.setString(1, sessId);
 			
 			rs = psmt.executeQuery();
+			
 			if(rs.next()) {
 				vo = new UserVO();
 				vo.setUid(rs.getString(1));
@@ -225,11 +226,12 @@ public class UserDAO extends DBHelper {
 				vo.setRegip(rs.getString(11));
 				vo.setRdate(rs.getString(12));
 			}
-			close();
 			
+			close();			
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		
 		return vo;
 	}
 	
@@ -265,12 +267,11 @@ public class UserDAO extends DBHelper {
 			psmt.setString(2, uid);
 			psmt.executeUpdate();
 			close();
-			
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
 	}
+	
 	public void updateUserForSessLimitDate(String sessId) {
 		try {
 			logger.info("updateUserForSessLimitDate...");
@@ -279,11 +280,9 @@ public class UserDAO extends DBHelper {
 			psmt.setString(1, sessId);
 			psmt.executeUpdate();
 			close();
-			
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
 	}
 	public void updateUserForSessionOut(String uid) {
 		try {
@@ -293,11 +292,9 @@ public class UserDAO extends DBHelper {
 			psmt.setString(1, uid);
 			psmt.executeUpdate();
 			close();
-			
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
 	}
 	
 	public void deleteUser() {}

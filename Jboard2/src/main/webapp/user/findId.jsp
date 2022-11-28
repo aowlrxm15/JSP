@@ -2,40 +2,47 @@
 <jsp:include page="./_header.jsp"/>
 <script src="/Jboard2/js/emailAuth.js"></script>
 <script>
+	
 	$(function(){
+		
 		$('.btnNext').click(function(e){
 			e.preventDefault();
 			
 			if(!isEmailAuthOk){
-				alert('이메일 인증을 하십시오.');
+				alert('이메일 인증을 하십시요.');
 				return;
 			}
 			
-			let name = $('input[name=name]').val();
+			let name  = $('input[name=name]').val();
 			let email = $('input[name=email]').val();
 			
 			let jsonData = {
-					"name" : name,
-					"email" : email
+				"name": name,
+				"email": email
 			};
 			
 			$.ajax({
-				url : '/Jboard2/user/findId.do',
-				type : 'post',
-				data : jsonData,
-				dataType :'json',
-				success : function(data){
+				url: '/Jboard2/user/findId.do',
+				type: 'post',
+				data: jsonData,
+				dataType: 'json',
+				success: function(data){
 					
-					if(data.result == 0){
+					if(data.result > 0){
 						location.href = "/Jboard2/user/findIdResult.do";
 					}else{
-						alert('일치하는 회원이 없습니다.\n이름과 이메일을 다시 확인하시기 바랍니다.');
+						alert('일치하는 회원이 없습니다.\n이름과 이메일을 다시 확인 하시기 바랍니다.');
 					}
+					
 				}
 			});
+			
 		});
+		
 	});
+
 </script>
+
 <main id="user">
     <section class="find findId">
         <form action="#">
@@ -51,7 +58,6 @@
                         <div>
                             <input type="email" name="email" placeholder="이메일 입력"/>
                             <span class="resultEmail"></span>
-                            
                             <button type="button" class="btnAuth" id="btnEmail">인증번호 받기</button>
                         </div>
                         <div>

@@ -1,10 +1,11 @@
 /**
  * 
  */
+let preventDoubleClick = false;
+let isEmailAuthOk = false;
  
- let preventDoubleClick = false;
- let isEmailAuthOk = false;
- $(function(){
+$(function(){
+	
 	// 이메일 인증코드 발송 클릭
 	$('#btnEmail').click(function(){
 		
@@ -71,8 +72,9 @@
 			$('.resultEmail').text('이메일이 인증 되었습니다.');				
 			$('.auth').hide();
 		}else{
-			isEmailAuthCodeOk = false;
+			isEmailAuthOk = false;
 			alert('인증코드가 틀립니다.\n다시 확인 하십시요.');
 		}
 	});
+	
 });

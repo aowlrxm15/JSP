@@ -2,34 +2,33 @@
 <jsp:include page="./_header.jsp"/>
 <script src="/Jboard2/js/validation.js"></script>
 <script>
+
 $(function(){
-	
+
 	$('.btnNext').click(function(e){
 		e.preventDefault();
-	
-		$('input[name=pass2]').focusout(function(){			
+		
 		let pass1 = $('input[name=pass1]').val();
 		let pass2 = $('input[name=pass2]').val();
 		
 		if(pass1 == pass2){
 							
-		if(pass2.match(regPass)){
+			if(pass2.match(regPass)){
 				
 				let uid = $('#uid').text();
 				
 				let jsonData = {
-						"uid": uid,
-						"pass": pass2
+					"uid": uid,
+					"pass": pass2
 				};
-				
+								
 				$.ajax({
-					url : '/Jboard2/user/findPwChange.do',
-					method : 'post',
-					data : jsonData,
-					dataType : 'json',
+					url: '/Jboard2/user/findPwChange.do',
+					method: 'post',
+					data: jsonData,
+					dataType: 'json',
 					success: function(data){
 						if(data.result > 0){
-							
 							alert('비밀번호가 변경되었습니다.\n로그인을 하시기 바랍니다.');
 							location.href = "/Jboard2/user/login.do";
 						}
@@ -37,17 +36,15 @@ $(function(){
 				});
 				
 			}else{
-				isPassOk = false;
 				$('.resultPass').css('color', 'red').text('영문, 숫자, 특수문자 조합 최소 5자 이상 이어야 합니다.');
 			}				
-			
-			}else{
-			isPassOk = false;
+		}else{
 			$('.resultPass').css('color', 'red').text('비밀번호가 일치하지 않습니다.');
 		}			
 	});
 });
 </script>
+
 <main id="user">
     <section class="find findPwChange">
         <form action="#">
@@ -55,7 +52,7 @@ $(function(){
                 <caption>비밀번호 변경</caption>                        
                 <tr>
                     <td>아이디</td>
-                    <td>${sessUserForPw.uid}</td>
+                    <td id="uid">${sessUserForPw.uid}</td>
                 </tr>
                 <tr>
                     <td>새 비밀번호</td>

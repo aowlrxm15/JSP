@@ -97,3 +97,24 @@ public class Sql {
 	public static final String DELETE_FILE  = "delete from `board_file` where `parent`=?";
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

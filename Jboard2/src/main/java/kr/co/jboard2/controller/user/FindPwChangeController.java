@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonObject;
 
-import kr.co.jboard2.service.user.UserService;
+import kr.co.jboard2.service.UserService;
 
 @WebServlet("/user/findPwChange.do")
 public class FindPwChangeController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private UserService service = UserService.INSTANCE;
-
+	
 	@Override
 	public void init() throws ServletException {
 	}
@@ -32,7 +32,8 @@ public class FindPwChangeController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uid = req.getParameter("uid");
+		
+		String uid  = req.getParameter("uid");
 		String pass = req.getParameter("pass");
 		
 		int result = service.updateUserPassword(uid, pass);
@@ -42,6 +43,5 @@ public class FindPwChangeController extends HttpServlet {
 		
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
-				
 	}
 }

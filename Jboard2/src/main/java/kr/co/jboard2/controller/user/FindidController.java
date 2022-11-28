@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
 
-import kr.co.jboard2.service.user.UserService;
+import kr.co.jboard2.service.UserService;
 import kr.co.jboard2.vo.UserVO;
 
 @WebServlet("/user/findId.do")
@@ -34,7 +34,8 @@ public class FindIdController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String name = req.getParameter("name");
+		
+		String name  = req.getParameter("name");
 		String email = req.getParameter("email");
 		
 		UserVO vo = service.selectUserForFindId(name, email);
@@ -49,7 +50,6 @@ public class FindIdController extends HttpServlet {
 			
 		}else {
 			json.addProperty("result", 0);
-			
 		}
 		
 		PrintWriter writer = resp.getWriter();

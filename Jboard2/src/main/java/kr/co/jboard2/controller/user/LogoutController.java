@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.jboard2.service.user.UserService;
+import kr.co.jboard2.service.UserService;
 import kr.co.jboard2.vo.UserVO;
 
 @WebServlet("/user/logout.do")
@@ -26,14 +26,13 @@ public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession sess = req.getSession();
-		
 		UserVO sessUser = (UserVO)sess.getAttribute("sessUser");
 		String uid = sessUser.getUid();
 		
 		// 세션 해제
 		sess.removeAttribute("sessUser");
 		sess.invalidate();
-		
+
 		// 쿠키 삭제
 		Cookie cookie = new Cookie("SESSID", null);
 		cookie.setPath("/");
@@ -42,7 +41,6 @@ public class LogoutController extends HttpServlet {
 		
 		// 데이터베이스 사용자 sessId update
 		service.updateUserForSessionOut(uid);
-		
 		
 		resp.sendRedirect("/Jboard2/user/login.do?success=200");
 	}
