@@ -1,8 +1,3 @@
-/**
- * 날짜 : 2022/10/21
-   이름 : 김철학
-   내용 : 사용자 회원가입 유효성 검사 
- */
 // 데이터 검증에 사용하는 정규표현식
 let regUid   = /^[a-z]+[a-z0-9]{5,19}$/g;
 let regPass  = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
@@ -52,7 +47,7 @@ $(function(){
 		setTimeout(()=>{
 			
 			$.ajax({
-				url: '/Jboard2/user/checkUid.do',
+				url: '/Farmstory2/user/checkUid.do',
 				method: 'get',
 				data: jsonData,
 				dataType: 'json',
@@ -132,7 +127,7 @@ $(function(){
 		setTimeout(()=>{
 			
 			$.ajax({
-				url: '/Jboard2/user/checkNick.do',
+				url: '/Farmstory2/user/checkNick.do',
 				type: 'get',
 				data: jsonData,
 				dataType: 'json',
@@ -172,7 +167,7 @@ $(function(){
 		console.log('here1 : ' + email);
 		
 		if(email == ''){
-			alert('이미엘을 입력 하세요.');
+			alert('이메일을 입력 하세요.');
 			return;
 		}
 		
@@ -189,7 +184,7 @@ $(function(){
 		setTimeout(function(){
 			console.log('here4');
 			$.ajax({
-				url: '/Jboard2/user/emailAuth.do',
+				url: '/Farmstory2/user/emailAuth.do',
 				method: 'GET',
 				data: {"email": email},
 				dataType: 'json',
