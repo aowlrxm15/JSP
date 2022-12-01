@@ -25,17 +25,6 @@ public class ViewController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String no = req.getParameter("no");
-		String pg = req.getParameter("pg");
-		
-		// 조회수 +1
-		service.updateArticleHit(no);
-		
-		// 글 가져오기
-		ArticleVO article = service.selectArticle(no);
-		
-		// 댓글 가져오기
-		List<ArticleVO> comments = service.selectComments(no);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/view.jsp");
 		dispatcher.forward(req, resp);

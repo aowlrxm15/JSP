@@ -3,8 +3,10 @@
 <jsp:include page="./_${group}.jsp"/>
 <main id="board">
     <section class="write">
-
-        <form action="#">
+        <form action="/Farmstory2/board/write.do" method="post" enctype="multipart/form-data">
+        	<input type="hidden" name="group" value="${group}"/>
+        	<input type="hidden" name="cate" value="${cate}"/>
+        	<input type="hidden" name="uid" value="${uid}"/>
             <table border="0">
                 <caption>글쓰기</caption>
                 <tr>
@@ -20,7 +22,7 @@
                 <tr>
                     <th>파일</th>
                     <td>
-                        <input type="file" name="file"/>
+                        <input type="file" name="fname"/>
                     </td>
                 </tr>
             </table>
@@ -33,7 +35,4 @@
 
     </section>
 </main>
-</article>
-    </section>
-</div>
 <jsp:include page="../_footer.jsp"/>

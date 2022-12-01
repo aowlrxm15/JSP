@@ -1,12 +1,8 @@
 package kr.co.farmstory1.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import kr.co.farmstory1.bean.ArticleBean;
 import kr.co.farmstory1.db.DBHelper;
 import kr.co.farmstory1.db.Sql;
+
 
 public class ArticleDAO extends DBHelper {
 	

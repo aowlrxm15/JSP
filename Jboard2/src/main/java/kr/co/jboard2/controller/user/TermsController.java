@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.jboard2.dao.UserDAO;
 import kr.co.jboard2.service.UserService;
 import kr.co.jboard2.vo.TermsVO;
 

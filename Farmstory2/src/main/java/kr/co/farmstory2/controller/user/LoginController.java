@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet {
 		if(vo != null) {
 			HttpSession sess = req.getSession();
 			sess.setAttribute("sessUser", vo);
-			resp.sendRedirect("/farmstory2/board/list.do");
+			resp.sendRedirect("/Farmstory2");
 		}else {
 			resp.sendRedirect("/Farmstory2/user/login.do?success=100");
 			
