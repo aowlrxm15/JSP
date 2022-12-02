@@ -15,7 +15,7 @@ import kr.co.farmstory2.service.ArticleService;
 import kr.co.farmstory2.vo.ArticleVO;
 
 
-@WebServlet("/list.do")
+@WebServlet("/board/list.do")
 public class ListController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -71,7 +71,7 @@ public class ListController extends HttpServlet {
 		
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/list.do");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/list.jsp");
 		dispatcher.forward(req, resp);		
 	}
 	

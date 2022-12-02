@@ -1,6 +1,7 @@
 package kr.co.farmstory2.controller.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.farmstory2.dao.ArticleDAO;
+import kr.co.farmstory2.service.ArticleService;
+import kr.co.farmstory2.vo.ArticleVO;
+
 @WebServlet("/board/view.do")
 public class ViewController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private ArticleService service = ArticleService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
@@ -23,9 +29,15 @@ public class ViewController extends HttpServlet {
 		
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
+		String no = req.getParameter("no");
+		String pg = req.getParameter("pg");
 		
 		req.setAttribute("group", group);
 		req.setAttribute("cate", cate);
+		req.setAttribute("no", no);
+		req.setAttribute("pg", pg);
+		
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/view.jsp");
 		dispatcher.forward(req, resp);		
@@ -33,5 +45,11 @@ public class ViewController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String no = req.getParameter("no");
+		
+		service.updateArticleHit(no);
+		
+		ArticleVO article = service.selectArticle(no);
+		List<ArticleVO> comments = service.selectComments(no);
 	}
 }

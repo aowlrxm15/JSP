@@ -7,12 +7,11 @@
         
         <table border="0">
             <caption>글보기</caption>
-            <c:forEach var="comment" items="${comments}">
             <tr>
                 <th>제목</th>
-                <td><input type="text" name="title" value="${comment.title}" readonly/></td>
+                <td><input type="text" name="title" value="${article.title}" readonly/></td>
             </tr>
-            <c:if test="${article.getFile() > 0}">
+            <c:if test="${article.File gt 0}">
             <tr>
                 <th>파일</th>
                 <td><a href="/Farmstory2/download.do?parent=${article.no}">${article.OriName}</a>&nbsp;<span>${article.Download}</span>회 다운로드</td>
@@ -21,34 +20,29 @@
             <tr>
                 <th>내용</th>
                 <td>
-                    <textarea name="content" readonly>내용 샘플입니다.</textarea>
+                    <textarea name="content" readonly>${article.Content}</textarea>
                 </td>
             </tr>                    
-            </c:forEach>
         </table>
         
         <div>
             <a href="./delete.do?group=${group}&cate=${cate}" class="btn btnRemove">삭제</a>
             <a href="./modify.do?group=${group}&cate=${cate}" class="btn btnModify">수정</a>
-            <a href="./list.do?group=${group}&cate=${cate}" class="btn btnList">목록</a>
+            <a href="/Farmstory2/board/list.do?group=${group}&cate=${cate}" class="btn btnList">목록</a>
         </div>
 
         <!-- 댓글목록 -->
         <section class="commentList">
             <h3>댓글목록</h3>                   
-			<c:forEach var="comment" items="comments">
             <article>
                 <span class="nick">${comment.Nick}</span>
                 <span class="date">${comment.Rdate().substring(2, 10)}</span>
                 <p class="content">${comment.Uid}</p>                        
-                <c:if test="" var="">
                 <div>
                     <a href="#" class="remove">삭제</a>
                     <a href="#" class="modify">수정</a>
                 </div>
-                </c:if>
             </article>
-			</c:forEach>
             <p class="empty">등록된 댓글이 없습니다.</p>
 
         </section>
