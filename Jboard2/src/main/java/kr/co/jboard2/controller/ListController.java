@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.jboard2.service.ArticleService;
 import kr.co.jboard2.vo.ArticleVO;
 
-@WebServlet("./list.do")
+@WebServlet("/list.do")
 public class ListController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -63,7 +63,7 @@ public class ListController extends HttpServlet {
 		req.setAttribute("pageStartNum", pageStartNum+1);
 		req.setAttribute("search", search);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("./list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/list.jsp");
 		dispatcher.forward(req, resp);
 	}
 	

@@ -54,7 +54,11 @@ public enum UserService {
 	}
 	
 	public void selectUsers() {}
-	public void updateUser() {}
+	
+	public void updateUser(UserVO vo) {
+		dao.updateUser(vo);
+	}
+	
 	public int updateUserPassword(String uid, String pass) {
 		return dao.updateUserPassword(uid, pass);
 	}
@@ -70,6 +74,9 @@ public enum UserService {
 	}
 	
 	
+	
+	
+	
 	public void deleteUser() {}
 	
 
@@ -79,8 +86,8 @@ public enum UserService {
 		int code = ThreadLocalRandom.current().nextInt(100000, 1000000);
 		
 		// 기본정보
-		String sender = "chhak0503@gmail.com";
-		String password = "ubqyyhrbehqxvawu";
+		String sender = "aowlrxm14@gmail.com";
+		String password = "ouybbxbajxurpdqx";
 		
 		String title = "Jboard2 인증코드 입니다.";
 		String content = "<h1>인증코드는 "+code+" 입니다.</h1>";

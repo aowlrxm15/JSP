@@ -92,6 +92,28 @@ $(function(){
 		}			
 	});
 	
+	// 회원정보 비밀번호 확인
+	$('input[name=pass]').focusout(function(){			
+		let pass = $('input[name=pass]').val();
+		
+		$.ajax({
+				
+				url: '/Jboard2/user/info.do',
+				method: 'post',
+				data: jsonData,
+				dataType: 'json',
+				success:function(data){
+					if(data.result == 0){
+						pass = true;
+					}else{
+						pass = false;
+						alert("비밀번호가 일치하지 않습니다.");
+					}
+				}
+			});
+			
+	});
+	
 	// 이름 유효성 검증
 	$('input[name=name]').focusout(function(){
 		
