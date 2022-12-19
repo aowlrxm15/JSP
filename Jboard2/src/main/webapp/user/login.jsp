@@ -1,5 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="./_header.jsp"/>
+<script>
+	let success = '${success}';
+	
+	if(success == 100){
+		alert('로그인 실패!');
+	}else if(success == 101){
+		alert('세션이 초기화되었습니다.\n다시 로그인해주세요');
+	}else if(success == 102){
+		alert('먼저 로그인을 하셔야 합니다.');
+	}else if(success == 105){
+		alert('탈퇴 완료하였습니다. \n 그동안 이용해주셔서 감사합니다.');
+	}
+	
+</script>
 <main id="user">
     <section class="login">
         <form action="/Jboard2/user/login.do" method="post">

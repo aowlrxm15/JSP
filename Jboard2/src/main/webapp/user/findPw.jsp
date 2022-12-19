@@ -9,38 +9,34 @@
 			e.preventDefault();
 			
 			if(!isEmailAuthOk){
-				alert('이메일 인증을 하십시요.');
+				alert('이메일 인증을 해야합니다.');
 				return;
 			}
-			
-			let uid  = $('input[name=uid]').val();
+				
+			let uid   = $('input[name=uid]').val();
 			let email = $('input[name=email]').val();
 			
 			let jsonData = {
-				"uid": uid,
-				"email": email
-			};
+					"uid":uid,
+					"email":email,
+			}
 			
 			$.ajax({
-				url: '/Jboard2/user/findPw.do',
-				type: 'post',
-				data: jsonData,
-				dataType: 'json',
+				url:'/Jboard2/user/findPw.do',
+				method:'post',
+				data:jsonData,
+				dataType:'json',
 				success: function(data){
 					
 					if(data.result > 0){
-						location.href = "/Jboard2/user/findPwChange.do";
+						location.href = "/Jboard2/user/findPwChange.do"
 					}else{
-						alert('일치하는 회원이 없습니다.\n아이디와 이메일을 다시 확인 하시기 바랍니다.');
+						alert('일치하는 회원이 없습니다.\n이름과 이메일을 다시 확인해주세요');
 					}
-					
 				}
-			});
-			
+			});			
 		});
-		
 	});
-
 </script>
 <main id="user">
     <section class="find findPw">

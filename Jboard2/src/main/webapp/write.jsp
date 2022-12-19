@@ -3,7 +3,7 @@
 <main id="board">
     <section class="write">
         <form action="/Jboard2/write.do" method="post" enctype="multipart/form-data">
-        	<input type="hidden" name="uid" value="${sessUser.uid}"/>
+        	<input type="hidden" name="uid" value="${sessUser.uid}">
             <table border="0">
                 <caption>글쓰기</caption>
                 <tr>
@@ -25,11 +25,10 @@
             </table>
             
             <div>
-                <a href="./list.html" class="btn btnCancel">취소</a>
+                <a href="/Jboard2/list.do" class="btn btnCancel">취소</a>
                 <input type="submit" value="작성완료" class="btn btnComplete"/>
             </div>
         </form>
-
     </section>
 </main>
 <jsp:include page="./_footer.jsp"/>

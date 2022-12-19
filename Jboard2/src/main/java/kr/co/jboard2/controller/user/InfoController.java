@@ -1,6 +1,7 @@
 package kr.co.jboard2.controller.user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,24 +13,20 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
 
-import kr.co.jboard2.service.UserService;
-import kr.co.jboard2.vo.UserVO;
+import kr.co.jboard2.service.user.UserService;
 
 @WebServlet("/user/info.do")
 public class InfoController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private UserService service = UserService.INSTANCE;
-
+	
 	@Override
 	public void init() throws ServletException {
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String success = req.getParameter("success");
-		req.setAttribute("success", success);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/info.jsp");
 		dispatcher.forward(req, resp);
@@ -39,20 +36,18 @@ public class InfoController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String uid = req.getParameter("uid");
-		String pass = req.getParameter("pass");
-	
-		UserVO vo = service.selectUser(uid, pass);
 		
+		int result = service.outUser(uid);
 		
-		if(vo != null) {
-			// 회원이 맞을경우
-			HttpSession sess = req.getSession();
-			sess.setAttribute("result", vo);
-			resp.sendRedirect("/Jboard2/user/myInfo.do");
-		}else {
-			resp.sendRedirect("/Jboard2/user/info.do");
-			
-			
-		}
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+		
+		HttpSession session = req.getSession();
+		session.removeAttribute("sessUser");
+		session.invalidate();
 	}
+
 }

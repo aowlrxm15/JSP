@@ -9,40 +9,102 @@
 			e.preventDefault();
 			
 			if(!isEmailAuthOk){
-				alert('이메일 인증을 하십시요.');
+				alert('이메일 인증을 해야합니다.');
 				return;
 			}
-			
+				
 			let name  = $('input[name=name]').val();
 			let email = $('input[name=email]').val();
 			
 			let jsonData = {
-				"name": name,
-				"email": email
-			};
+					"name":name,
+					"email":email,
+			}
 			
 			$.ajax({
-				url: '/Jboard2/user/findId.do',
-				type: 'post',
-				data: jsonData,
-				dataType: 'json',
+				url:'/Jboard2/user/findId.do',
+				method:'post',
+				data:jsonData,
+				dataType:'json',
 				success: function(data){
 					
 					if(data.result > 0){
-						location.href = "/Jboard2/user/findIdResult.do";
+						location.href = "/Jboard2/user/findIdResult.do"
 					}else{
-						alert('일치하는 회원이 없습니다.\n이름과 이메일을 다시 확인 하시기 바랍니다.');
+						alert('일치하는 회원이 없습니다.\n이름과 이메일을 다시 확인해주세요');
+					}
+				}
+			});			
+		});
+		
+		
+		
+		/*
+		let isCodeOk = false;
+		let emailCode = 1;
+		
+		$('.btnAuth').click(function(){
+			let name  = $('input[name=name]').val();
+			let email = $('input[name=email]').val();
+			
+			let jsonData = {
+				"name":name,
+				"email":email
+			}
+			
+			$.ajax({
+				url:'/Jboard2/user/findId.do',
+				method:'post',
+				data:jsonData,
+				dataType:'json',
+				success: function(data){
+					
+					if(data.status == 1){
+						emailCode = data.code;
+						$('#emailResult').css('color','green').text('인증번호 전송완료');
+					}else{
+						$('#emailResult').css('color','red').text('이름 및 이메일을 다시 확인해주세요');
 					}
 					
 				}
 			});
-			
 		});
 		
+		$('.btnConfirm').click(function(){
+			
+			let code = $('input[name=auth]').val();
+			
+			if(code == emailCode){
+				isCodeOk = true;
+				$('#emailResult').css('color','green').text('인증완료');
+			}else{
+				$('#emailResult').css('color','red').text('인증 실패! 다시 시도해주세요');
+			}
+		});
+		
+		$('.btnNext').click(function(){
+			if(!isCodeOk){
+				alert('인증을 완료하셔야합니다.');
+				return false;
+			}else {
+				let email = $('input[name=email]').val();
+				let jsonData = {"email":email}
+				
+				$.ajax({
+					url:'/Jboard2/user/FindId.do',
+					method:'get',
+					data:jsonData,
+					dataType:'json',
+					success: function(data){
+					}
+				});
+				
+				return true;
+			}
+		});
+		*/
 	});
-
 </script>
-
 <main id="user">
     <section class="find findId">
         <form action="#">

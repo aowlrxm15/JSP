@@ -1,11 +1,10 @@
 package kr.co.jboard2.vo;
 
 public class FileVO {
-	
-	private int fno; 
-	private int parent; 
-	private String newName; 
-	private String oriName; 
+	private int fno;
+	private int parent;
+	private String newName;
+	private String oriName;
 	private int download;
 	
 	public int getFno() {
@@ -38,6 +37,7 @@ public class FileVO {
 	public void setDownload(int download) {
 		this.download = download;
 	}
-
+	
+	
 	
 }

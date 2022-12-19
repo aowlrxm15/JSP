@@ -1,4 +1,4 @@
-package kr.co.jboard2.service;
+package kr.co.jboard2.service.article;
 
 import java.io.File;
 import java.io.IOException;

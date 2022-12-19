@@ -11,18 +11,17 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class GmailTest {
-	
 	public static void main(String[] args) {
 		
 		// 기본정보
-		String sender = "chhak0503@gmail.com";
-		String password = "ubqyyhrbehqxvawu";
+		String sender = "lazca9527@gmail.com";
+		String password = "plinrghtgiezdqgy";
 		
-		String receiver = "1999millenni@naver.com";
+		String receiver = "lazca7@naver.com";
 		String title = "테스트 메일 입니다.";
 		String content = "테스트 내용 입니다.";
 		
-		// Gmail SMTP 서버설정
+		// Gmail SMTP 서버 설정
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "465");
@@ -36,7 +35,7 @@ public class GmailTest {
 				return new PasswordAuthentication(sender, password);
 			}
 		});
-				
+		
 		// 메일발송
 		Message message = new MimeMessage(session);
 		
@@ -48,12 +47,13 @@ public class GmailTest {
 			message.setContent(content, "text/html;charset=utf-8");
 			Transport.send(message);
 			
-		}catch (Exception e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("메일 전송 실패...");
 		}
 		
 		System.out.println("메일 전송 성공...");
+		
 	}
-
 }

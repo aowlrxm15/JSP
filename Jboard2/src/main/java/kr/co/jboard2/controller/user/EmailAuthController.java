@@ -2,15 +2,7 @@ package kr.co.jboard2.controller.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Properties;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonObject;
 
-import kr.co.jboard2.service.UserService;
+import kr.co.jboard2.service.user.UserService;
 
 @WebServlet("/user/emailAuth.do")
-public class EmailAuthController extends HttpServlet {
+public class EmailAuthController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	private UserService service = UserService.INSTANCE;
@@ -45,11 +37,10 @@ public class EmailAuthController extends HttpServlet {
 		
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
-		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
-	
+
 }

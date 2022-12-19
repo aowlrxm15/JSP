@@ -1,7 +1,8 @@
-package kr.co.jboard2.controller.user;
+package kr.co.jboard2.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,15 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonObject;
+import com.google.gson.Gson;
 
-import kr.co.jboard2.service.user.UserService;
+import kr.co.jboard2.service.article.ArticleService;
+import kr.co.jboard2.vo.ArticleVO;
 
-@WebServlet("/user/checkNick.do")
-public class CheckNickController extends HttpServlet{
+@WebServlet("/commentList.do")
+public class CommentListController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	private UserService service = UserService.INSTANCE;
+	private static ArticleService service = ArticleService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
@@ -26,15 +28,16 @@ public class CheckNickController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String nick = req.getParameter("nick");
+		String no = req.getParameter("no");
 		
-		int result = service.checkNick(nick);
+		List<ArticleVO> articles = service.selectCommentList(no);
 		
-		JsonObject json = new JsonObject();
-		json.addProperty("result", result);
+		//resp.setContentType("text/html;charset=UTF-8");
 		
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(articles);
 		PrintWriter writer = resp.getWriter();
-		writer.print(json.toString());
+		writer.print(jsonData);
 	}
 	
 	@Override

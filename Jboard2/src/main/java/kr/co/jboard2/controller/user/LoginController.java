@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.jboard2.service.UserService;
+import kr.co.jboard2.service.user.UserService;
 import kr.co.jboard2.vo.UserVO;
 
 @WebServlet("/user/login.do")
-public class LoginController extends HttpServlet {
+public class LoginController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	private UserService service = UserService.INSTANCE;
-
+	private static UserService service = UserService.INSTANCE;
+	
 	@Override
 	public void init() throws ServletException {
 	}
@@ -30,8 +30,7 @@ public class LoginController extends HttpServlet {
 		String success = req.getParameter("success");
 		req.setAttribute("success", success);
 		
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
+		RequestDispatcher dispatcher =	req.getRequestDispatcher("/user/login.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
@@ -41,17 +40,17 @@ public class LoginController extends HttpServlet {
 		String uid  = req.getParameter("uid");
 		String pass = req.getParameter("pass");
 		String auto = req.getParameter("auto");
-	
+		
 		UserVO vo = service.selectUser(uid, pass);
 		
 		if(vo != null) {
 			// 회원이 맞을경우
-			HttpSession sess = req.getSession();
-			sess.setAttribute("sessUser", vo);
+			HttpSession session = req.getSession();
+			session.setAttribute("sessUser", vo);
 			
 			if(auto != null) {
 				
-				String sessId = sess.getId();
+				String sessId = session.getId();
 				
 				// 쿠키 생성
 				Cookie cookie = new Cookie("SESSID", sessId);
@@ -62,12 +61,12 @@ public class LoginController extends HttpServlet {
 				// sessId 데이터베이스 저장
 				service.updateUserForSession(uid, sessId);
 			}
-			resp.sendRedirect("/Jboard2/list.do");
-			
+			resp.sendRedirect("/Jboard2/list.do?pg=1");
 		}else {
-			// 회원이 아닌경우
+			//회원이 아닐경우
 			resp.sendRedirect("/Jboard2/user/login.do?success=100");
 		}
-		
 	}
+	
+	
 }
